@@ -1,0 +1,190 @@
+<head>
+  <title>Scratch Game</title>
+
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scratch-card {
+      display: none;
+      width: 300px;
+      height: 300px;
+      position: relative;
+      box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .scratch-base,
+    #scratch {
+      cursor: default;
+      height: 300px;
+      width: 300px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: grabbing;
+    }
+
+    .scratch-base {
+      line-height: 60px;
+      text-align: center;
+    }
+
+    #scratch {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+    }
+
+    .email-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .pop-up {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="input-email-container" class="email-container">
+    <input id="input-email" type="text" placeholder="Your email"></input>
+    <button type="submit" onclick="saveEmail()">Let's Play</button>
+  </div>
+
+  <div id="scratch-card" class="scratch-card">
+    <div
+      id="scratch-base"
+      class="scratch-base"
+      style="
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      "
+    ></div>
+    <canvas id="scratch" width="300" height="300"></canvas>
+  </div>
+
+  <div id="pop-up" class="pop-up">
+    <div>this is pop up</div>
+    <a href="#" >Use your code !</a>
+  </div>
+</body>
+
+<!-- <script src="https://www.codehim.com/demo/scratch-card-javascript-html5/js/scratch-card.js"></script> -->
+
+<script>
+  var timeout = null;
+  var images = [];
+  var chosenIndex = [];
+  var failedCount = 0;
+
+  function deleteArea(props) {
+    const { layerX, layerY } = props;
+    ctx.arc(layerX, layerY, 15, 0, 2 * Math.PI);
+    ctx.save();
+    ctx.clip();
+    ctx.clearRect(layerX - 15, layerY - 15, 30, 30);
+    ctx.restore();
+  }
+
+  var c = document.getElementById("scratch");
+  var ctx = c.getContext("2d");
+  ctx.fillStyle = "red";
+  ctx.fillRect(0, 0, 300, 300);
+
+  c.addEventListener("mousedown", function () {
+    if (timeout) {
+      clearTimeout(timeout)
+    }
+
+    c.addEventListener("mousemove", deleteArea); 
+
+    c.addEventListener("mouseup", function () {
+      c.removeEventListener("mousemove", deleteArea);
+
+      let percentage = fillPercentage();
+
+      if(percentage > 30){
+        ctx.clearRect(0, 0, 300, 300);
+
+        setTimeout(() => {
+          if(chosenIndex < 100 - failedCount){
+            let scratchCard = document.getElementById("scratch-card");
+            scratchCard.style.display= "none";
+
+            let popUp = document.getElementById("pop-up");
+            popUp.style.display= "flex";
+          }
+        }, 2000); 
+      }
+    });
+  });
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  function setChance(percentage, imageUrl) {
+    for (let i = 0; i < percentage; i++) {
+      images.push(imageUrl);
+    }
+  }
+
+  setChance(
+    50,
+    "https://www.ematicsolutions.com/wp-content/uploads/2020/04/ematic-logo-horizontal.png"
+  );
+
+  while (images.length < 100) {
+    images.push(
+      "https://img3.stockfresh.com/files/c/chrisdorney/m/61/3385554_stock-photo-better-luck-next-time.jpg"
+    );
+    failedCount++;
+  }
+
+  chosenIndex = getRandomInt(images.length);
+
+  document.getElementById("scratch-base").style.backgroundImage = `url(${
+    images[chosenIndex]
+  })`;
+
+  function saveEmail() {
+    let email = document.getElementById("input-email").value;
+    sessionStorage.setItem("scratch-games-email", email);
+
+    let inputEmailContainer = document.getElementById("input-email-container");
+    inputEmailContainer.style.display = "none";
+
+    let scratchCard = document.getElementById("scratch-card");
+    scratchCard.style.display= "block";
+  }
+
+  function fillPercentage() {
+    const data = ctx.getImageData(0, 0, 300, 300).data;
+
+    // The total number of pixels is the length of the 
+    // data array divided by 4, or width * height
+    const nrOfPixels = data.length / 4; // rgba pixels
+    let transparent = 0;
+
+    // Your code removes the alpha, so we check each
+    // 4th item in the array (notice the += 4)
+    // If it's transparent (A === 0), we count it
+    for (let i = 3; i < data.length; i += 4) {
+      transparent += data[i] ? 0 : 1;
+    }
+
+    // The percentage is the number of transparent pixels
+    // divided by the total number of pixels
+    const percentage = transparent / nrOfPixels * 100;
+
+    return percentage
+  }
+</script>
