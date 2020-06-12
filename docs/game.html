@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sticky-footer-navbar/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/game.css">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+            <a class="navbar-brand" href="instructions.html">How Does it work?</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link black-text" href="prizes.html">Prizes </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link black-text" href="leaderboard.html">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link black-text" href="#">ABC Fun Club</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+
+            <div class="row">
+                <div class="col">
+                    <div class="text-center">
+                        <img src="./raw/scratch-text.png" style="width: 300px;" class=" img-fluid"
+                            alt="Responsive image">
+
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                    <div class="text-center" style="text-transform:uppercase ;">
+                        <h3>Play and get lucky</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-md-center" style="margin-top: 20px;">
+                <div class="col col-lg-2">
+                    <!-- <div id="scratch-card" class="scratch-card"> -->
+                    <canvas id="scratch-1" class="scratch-canvas"></canvas>
+                    <div id="scratch-base" class="scratch-base"></div>
+                    <!-- </div> -->
+                </div>
+                <div class="col col-lg-2">
+                    <!-- <div id="scratch-card" class="scratch-card"> -->
+
+                    <canvas id="scratch-2" class="scratch-canvas"></canvas>
+                    <div id="scratch-base" class="scratch-base"></div>
+                    <!-- </div> -->
+                </div>
+                <div class="col col-lg-2">
+                    <!-- <div id="scratch-card" class="scratch-card"> -->
+
+                    <canvas id="scratch-3" class="scratch-canvas"></canvas>
+                    <div id="scratch-base" class="scratch-base"></div>
+                    <!-- </div> -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer class="footer mt-auto py-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class=" col-lg-4 col-sm-12 col-md-12 justify-content-center" style="place-self:center;">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Terms and condition</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-12  nav-link" style="place-self:center;text-align: center;">
+                    Copyright &copy; ABC All right reserved
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-12 nav-link" style="padding:0">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12">
+                            <ul class="nav justify-content-center">
+                                <li class="nav-item" style="align-self: center; margin-right: 12px;">
+                                    Stay connected
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">
+                                        <img src="./raw/fb.png" class=" img-fluid" alt="Responsive image"
+                                            style="height: 40px;">
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">
+                                        <img src="./raw/instagram.png" class=" img-fluid" alt="Responsive image"
+                                            style="height: 40px;">
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">
+                                        <img src="./raw/youtube.png" class=" img-fluid" alt="Responsive image"
+                                            style="height: 40px;">
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script>
+    var timeout = null;
+    var images = [];
+    var chosenIndex = [];
+    var failedCount = 0;
+    var scratch1 = document.getElementById(`scratch-1`)
+    var ctx1 = scratch1.getContext('2d')
+    var scratch2 = document.getElementById(`scratch-2`)
+    var ctx2 = scratch2.getContext('2d')
+    var scratch3 = document.getElementById(`scratch-3`)
+    var ctx3 = scratch3.getContext('2d')
+    attachEventListener = function (c, ctx) {
+        ctx.fillStyle = "red";
+        ctx.fillRect(0, 0, 150, 150);
+        c.addEventListener("mousedown", function () {
+            if (timeout) {
+                clearTimeout(timeout)
+            }
+
+            c.addEventListener("mousemove", deleteArea);
+
+            c.addEventListener("mouseup", function () {
+                c.removeEventListener("mousemove", deleteArea);
+                let percentage = fillPercentage(this.id);
+                console.log('percentage', percentage)
+                if (percentage > 30) {
+                    ctx.clearRect(0, 0, 150, 150);
+
+                    setTimeout(() => {
+                        if (chosenIndex < 100 - failedCount) {
+                            // let scratchCard = document.getElementById("scratch-card");
+                            // scratchCard.style.display = "none";
+
+                            // let popUp = document.getElementById("pop-up");
+                            // popUp.style.display = "flex";
+                        }
+                    }, 2000);
+                }
+            });
+        });
+    }
+    document.body.onload = function () {
+        attachEventListener(scratch1, ctx1)
+        attachEventListener(scratch2, ctx2)
+        attachEventListener(scratch3, ctx3)
+    }
+
+
+    function deleteArea(props) {
+        const { layerX, layerY, target } = props;
+        console.log('del area', target.id)
+        let ctx
+        if (target.id === 'scratch-1') {
+            ctx = ctx1
+        } else if (target.id === 'scratch-2') {
+            ctx = ctx2
+        } else if (target.id === 'scratch-3') {
+            ctx = ctx3
+        }
+        console.log('area', layerX, layerY);
+        ctx.arc(layerX, layerY, 15, 0, 2 * Math.PI);
+        ctx.save();
+        ctx.clip();
+        ctx.clearRect(layerX - 15, layerY - 15, 30, 30);
+        ctx.restore();
+    }
+
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    function setChance(percentage, imageUrl) {
+        for (let i = 0; i < percentage; i++) {
+            images.push(imageUrl);
+        }
+    }
+
+    setChance(
+        50,
+        "https://www.ematicsolutions.com/wp-content/uploads/2020/04/ematic-logo-horizontal.png"
+    );
+
+    while (images.length < 100) {
+        images.push(
+            "https://img3.stockfresh.com/files/c/chrisdorney/m/61/3385554_stock-photo-better-luck-next-time.jpg"
+        );
+        failedCount++;
+    }
+
+    chosenIndex = getRandomInt(images.length);
+
+    document.getElementById("scratch-base").style.backgroundImage = `url(${
+        images[chosenIndex]
+        })`;
+
+    // function saveEmail() {
+    //     let email = document.getElementById("input-email").value;
+    //     sessionStorage.setItem("scratch-games-email", email);
+
+    //     let inputEmailContainer = document.getElementById("input-email-container");
+    //     inputEmailContainer.style.display = "none";
+
+    //     let scratchCard = document.getElementById("scratch-card");
+    //     scratchCard.style.display = "block";
+    // }
+
+    function fillPercentage(id) {
+        console.log('fill percent', id)
+        let ctx = ''
+        if (id === 'scratch-1') {
+            ctx = ctx1
+        } else if (id === 'scratch-2') {
+            ctx = ctx2
+        } else if (id === 'scratch-3') {
+            ctx = ctx3
+        }
+        const data = ctx.getImageData(0, 0, 150, 150).data;
+
+        // The total number of pixels is the length of the 
+        // data array divided by 4, or width * height
+        const nrOfPixels = data.length / 4; // rgba pixels
+        let transparent = 0;
+
+        // Your code removes the alpha, so we check each
+        // 4th item in the array (notice the += 4)
+        // If it's transparent (A === 0), we count it
+        for (let i = 3; i < data.length; i += 4) {
+            transparent += data[i] ? 0 : 1;
+        }
+
+        // The percentage is the number of transparent pixels
+        // divided by the total number of pixels
+        const percentage = transparent / nrOfPixels * 100;
+        return percentage
+    }
+</script>
+
+</html>
