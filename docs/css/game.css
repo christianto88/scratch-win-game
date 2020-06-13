@@ -3,22 +3,30 @@
   position: absolute;
   cursor: grabbing;
   height: 150px;
-  width: 120px;
-  background-position: center;
+  width: 140px;
+  /* background-position: center;
   background-size: contain;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+  /* background-size: contain; */
+  background-image: url("../raw/zonk.png");
 }
-
+#revealPrize {
+  display: none;
+}
 /* .scratch-base {
   line-height: 60px;
   text-align: center;
 } */
 canvas {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   cursor: grabbing;
   z-index: 1;
+  height: 175px; */
+  border: 2px solid yellow;
+  width: 175px;
+  height: 175px;
 }
 /* #scratch {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

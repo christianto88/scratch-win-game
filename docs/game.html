@@ -44,6 +44,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+    <script src="js/game.js"></script>
 
     <header>
         <!-- Fixed navbar -->
@@ -85,32 +86,40 @@
                 <div class="w-100"></div>
                 <div class="col">
                     <div class="text-center" style="text-transform:uppercase ;">
-                        <h3>Play and get lucky</h3>
+                        <h3 id="gameText">Play and get lucky</h3>
+                        <!-- <canvas id="myCanvas" style="border:1px solid"></canvas> -->
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-md-center" style="margin-top: 20px;">
-                <div class="col col-lg-2">
-                    <!-- <div id="scratch-card" class="scratch-card"> -->
+            <div class="row justify-content-md-center" style="margin-top: 20px; margin-bottom: 150px;height: 175px;">
+                <div class="col col-lg-2 col-sm-4" style="border: 2px solid blue;">
                     <canvas id="scratch-1" class="scratch-canvas"></canvas>
-                    <div id="scratch-base" class="scratch-base"></div>
-                    <!-- </div> -->
                 </div>
-                <div class="col col-lg-2">
-                    <!-- <div id="scratch-card" class="scratch-card"> -->
-
+                <div class="col col-lg-2 col-sm-4" style="border: 2px solid blue;">
                     <canvas id="scratch-2" class="scratch-canvas"></canvas>
-                    <div id="scratch-base" class="scratch-base"></div>
-                    <!-- </div> -->
                 </div>
-                <div class="col col-lg-2">
-                    <!-- <div id="scratch-card" class="scratch-card"> -->
+                <div class="col col-lg-3 col-sm-4" style="border: 2px solid blue;">
+                    <canvas id="scratch-2" class="scratch-canvas"></canvas>
+                </div>
+                <!-- <div class="col col-lg-2 col-sm-2" style="border: 2px solid blue;"">
+                    <canvas  style=" border:1px solid black"></canvas>
 
-                    <canvas id="scratch-3" class="scratch-canvas"></canvas>
-                    <div id="scratch-base" class="scratch-base"></div>
-                    <!-- </div> -->
+                </div> -->
+                <!-- <div class="col col-lg-2 col-sm-2" style="border: 2px solid blue;"">
+
+                    <canvas id=" scratch-3" class="scratch-canvas"></canvas>
+                    <!-- <div id="scratch-base-3" class="scratch-base"></div> -->
+            </div>
+        </div>
+        <div class="row" id="revealPrize">
+            <div class="col">
+                <div class="text-center">
+                    <a href="congratulations.html">
+                        <img src="./raw/reveal-prize.png" class="img-fluid" alt="Responsive image">
+                    </a>
                 </div>
             </div>
+        </div>
 
         </div>
     </main>
@@ -168,141 +177,7 @@
 
 </body>
 <script>
-    var timeout = null;
-    var images = [];
-    var chosenIndex = [];
-    var failedCount = 0;
-    var scratch1 = document.getElementById(`scratch-1`)
-    var ctx1 = scratch1.getContext('2d')
-    var scratch2 = document.getElementById(`scratch-2`)
-    var ctx2 = scratch2.getContext('2d')
-    var scratch3 = document.getElementById(`scratch-3`)
-    var ctx3 = scratch3.getContext('2d')
-    attachEventListener = function (c, ctx) {
-        ctx.fillStyle = "red";
-        ctx.fillRect(0, 0, 150, 150);
-        c.addEventListener("mousedown", function () {
-            if (timeout) {
-                clearTimeout(timeout)
-            }
 
-            c.addEventListener("mousemove", deleteArea);
-
-            c.addEventListener("mouseup", function () {
-                c.removeEventListener("mousemove", deleteArea);
-                let percentage = fillPercentage(this.id);
-                console.log('percentage', percentage)
-                if (percentage > 30) {
-                    ctx.clearRect(0, 0, 150, 150);
-
-                    setTimeout(() => {
-                        if (chosenIndex < 100 - failedCount) {
-                            // let scratchCard = document.getElementById("scratch-card");
-                            // scratchCard.style.display = "none";
-
-                            // let popUp = document.getElementById("pop-up");
-                            // popUp.style.display = "flex";
-                        }
-                    }, 2000);
-                }
-            });
-        });
-    }
-    document.body.onload = function () {
-        attachEventListener(scratch1, ctx1)
-        attachEventListener(scratch2, ctx2)
-        attachEventListener(scratch3, ctx3)
-    }
-
-
-    function deleteArea(props) {
-        const { layerX, layerY, target } = props;
-        console.log('del area', target.id)
-        let ctx
-        if (target.id === 'scratch-1') {
-            ctx = ctx1
-        } else if (target.id === 'scratch-2') {
-            ctx = ctx2
-        } else if (target.id === 'scratch-3') {
-            ctx = ctx3
-        }
-        console.log('area', layerX, layerY);
-        ctx.arc(layerX, layerY, 15, 0, 2 * Math.PI);
-        ctx.save();
-        ctx.clip();
-        ctx.clearRect(layerX - 15, layerY - 15, 30, 30);
-        ctx.restore();
-    }
-
-
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
-    }
-
-    function setChance(percentage, imageUrl) {
-        for (let i = 0; i < percentage; i++) {
-            images.push(imageUrl);
-        }
-    }
-
-    setChance(
-        50,
-        "https://www.ematicsolutions.com/wp-content/uploads/2020/04/ematic-logo-horizontal.png"
-    );
-
-    while (images.length < 100) {
-        images.push(
-            "https://img3.stockfresh.com/files/c/chrisdorney/m/61/3385554_stock-photo-better-luck-next-time.jpg"
-        );
-        failedCount++;
-    }
-
-    chosenIndex = getRandomInt(images.length);
-
-    document.getElementById("scratch-base").style.backgroundImage = `url(${
-        images[chosenIndex]
-        })`;
-
-    // function saveEmail() {
-    //     let email = document.getElementById("input-email").value;
-    //     sessionStorage.setItem("scratch-games-email", email);
-
-    //     let inputEmailContainer = document.getElementById("input-email-container");
-    //     inputEmailContainer.style.display = "none";
-
-    //     let scratchCard = document.getElementById("scratch-card");
-    //     scratchCard.style.display = "block";
-    // }
-
-    function fillPercentage(id) {
-        console.log('fill percent', id)
-        let ctx = ''
-        if (id === 'scratch-1') {
-            ctx = ctx1
-        } else if (id === 'scratch-2') {
-            ctx = ctx2
-        } else if (id === 'scratch-3') {
-            ctx = ctx3
-        }
-        const data = ctx.getImageData(0, 0, 150, 150).data;
-
-        // The total number of pixels is the length of the 
-        // data array divided by 4, or width * height
-        const nrOfPixels = data.length / 4; // rgba pixels
-        let transparent = 0;
-
-        // Your code removes the alpha, so we check each
-        // 4th item in the array (notice the += 4)
-        // If it's transparent (A === 0), we count it
-        for (let i = 3; i < data.length; i += 4) {
-            transparent += data[i] ? 0 : 1;
-        }
-
-        // The percentage is the number of transparent pixels
-        // divided by the total number of pixels
-        const percentage = transparent / nrOfPixels * 100;
-        return percentage
-    }
 </script>
 
 </html>
