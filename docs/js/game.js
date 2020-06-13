@@ -7,7 +7,9 @@ var ctx1, ctx2, ctx3;
 var selectedBoxId;
 attachEventListener = function (c, ctx) {
   ctx.fillStyle = "green";
-  ctx.fillRect(0, 0, 300, 300);
+  ctx.fillRect(0, 0, 175, 175);
+  // var img = document.getElementById("placeholder");
+  // ctx.drawImage(img, 10, 10);
   c.addEventListener("mousedown", function () {
     if (timeout) {
       clearTimeout(timeout);
@@ -60,17 +62,6 @@ function setChance(percentage, imageUrl) {
   }
 }
 
-// function saveEmail() {
-//     let email = document.getElementById("input-email").value;
-//     sessionStorage.setItem("scratch-games-email", email);
-
-//     let inputEmailContainer = document.getElementById("input-email-container");
-//     inputEmailContainer.style.display = "none";
-
-//     let scratchCard = document.getElementById("scratch-card");
-//     scratchCard.style.display = "block";
-// }
-
 function fillPercentage(id) {
   let ctx = "";
   if (id === "scratch-1") {
@@ -108,10 +99,6 @@ function setBackgroundImages() {
   ).src = `${images[chosenIndex]}`;
 }
 document.body.onload = function () {
-  //   var c = document.getElementById("myCanvas");
-  //   var ctx = c.getContext("2d");
-  //   ctx.fillStyle = "#92B901";
-  //   ctx.fillRect(0, 0, 300, 300);
   scratch1 = document.getElementById(`scratch-1`);
   ctx1 = scratch1.getContext("2d");
   scratch2 = document.getElementById(`scratch-2`);
@@ -128,9 +115,9 @@ document.body.onload = function () {
     failedCount++;
   }
 
-  //   chosenIndex = getRandomInt(images.length);
+    chosenIndex = getRandomInt(images.length);
   chosenIndex = 10;
-  console.log("chosenIndex", chosenIndex);
+  // console.log("chosenIndex", chosenIndex);
   if (chosenIndex < 50) {
     setBackgroundImages();
   }
