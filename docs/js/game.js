@@ -104,8 +104,8 @@ function setBackgroundImages() {
   let boxNumber = getRandomInt(3) + 1;
   selectedBoxId = `scratch-${boxNumber}`;
   document.getElementById(
-    `scratch-base-${boxNumber}`
-  ).style.backgroundImage = `url(${images[chosenIndex]})`;
+    `scratch-img-${boxNumber}`
+  ).src = `${images[chosenIndex]}`;
 }
 document.body.onload = function () {
   //   var c = document.getElementById("myCanvas");

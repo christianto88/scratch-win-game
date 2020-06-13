@@ -11,7 +11,7 @@
   background-image: url("../raw/zonk.png");
 }
 #revealPrize {
-  display: none;
+  /* display: none; */
 }
 /* .scratch-base {
   line-height: 60px;
@@ -24,9 +24,13 @@ canvas {
   cursor: grabbing;
   z-index: 1;
   height: 175px; */
-  border: 2px solid yellow;
+  /* border: 2px solid yellow;
   width: 175px;
-  height: 175px;
+  height: 175px; */
+  position: absolute;
+  z-index: 1; 
+margin-bottom: 20px;
+
 }
 /* #scratch {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
