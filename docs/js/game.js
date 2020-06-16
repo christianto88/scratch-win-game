@@ -98,13 +98,16 @@ function handlePercentage(filledInPixels, canvas) {
     // canvas.parentNode.removeChild(canvas);
     canvas.remove();
     isDrawing = false;
-    document.getElementById("revealPrize").style.display = "initial";
-    document.getElementById("gameText").innerText =
-      "wow congratulations and you are the lucky winner";
+    if (selectedBoxId === canvas.id) {
+      document.getElementById("revealPrize").style.display = "initial";
+      document.getElementById("gameText").innerText =
+        "wow congratulations and you are the lucky winner";
+    }
   }
 }
 
 function handleMouseDown(e) {
+  console.log("is drawing");
   isDrawing = true;
   let canvas = "";
   if (e.target.id === "scratch-1") {
@@ -118,7 +121,6 @@ function handleMouseDown(e) {
 }
 
 function handleMouseMove(e) {
-  console.log("mouse move", event.target.id);
   if (!isDrawing) {
     return;
   }
@@ -154,6 +156,7 @@ function handleMouseMove(e) {
 }
 
 function handleMouseUp(e) {
+  console.log("finish drawing");
   isDrawing = false;
 }
 attachEventListener = function (canvas, ctx) {
