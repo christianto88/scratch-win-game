@@ -14,27 +14,49 @@ attachEventListener = function (c, ctx) {
     if (timeout) {
       clearTimeout(timeout);
     }
-
-    c.addEventListener("mousemove", deleteArea);
-
-    c.addEventListener("mouseup", function () {
-      c.removeEventListener("mousemove", deleteArea);
-      let percentage = fillPercentage(this.id);
-      if (percentage > 30) {
-        ctx.clearRect(0, 0, 300, 300);
-        if (selectedBoxId === this.id) {
-          document.getElementById("revealPrize").style.display = "initial";
-          document.getElementById("gameText").innerText =
-            "wow congratulations and you are the lucky winner";
-          //   setTimeout(() => {
-          //     window.location.href = "prizes.html";
-          //   }, 2000);
+    if (window.PointerEvent) {
+      c.addEventListener("pointermove", deleteArea);
+      c.addEventListener("pointerup", function () {
+        c.removeEventListener("pointermove", deleteArea);
+        let percentage = fillPercentage(this.id);
+        if (percentage > 30) {
+          ctx.clearRect(0, 0, 300, 300);
+          if (selectedBoxId === this.id) {
+            document.getElementById("revealPrize").style.display = "initial";
+            document.getElementById("gameText").innerText =
+              "wow congratulations and you are the lucky winner";
+            //   setTimeout(() => {
+            //     window.location.href = "prizes.html";
+            //   }, 2000);
+          }
         }
-      }
-    });
+      });
+      // if(window.navigator.maxTouchPoints>1)
+      // user agent and hardware support multi-touch
+    } else {
+      // provide fallback for user agents that do not support Pointer Events
+      c.addEventListener("mousemove", deleteArea);
+      c.addEventListener("mouseup", function () {
+        c.removeEventListener("mousemove", deleteArea);
+        let percentage = fillPercentage(this.id);
+        if (percentage > 30) {
+          ctx.clearRect(0, 0, 300, 300);
+          if (selectedBoxId === this.id) {
+            document.getElementById("revealPrize").style.display = "initial";
+            document.getElementById("gameText").innerText =
+              "wow congratulations and you are the lucky winner";
+            //   setTimeout(() => {
+            //     window.location.href = "prizes.html";
+            //   }, 2000);
+          }
+        }
+      });
+    }
   });
 };
-
+function paint(event) {
+  console.log("paint");
+}
 function deleteArea(props) {
   const { layerX, layerY, target } = props;
   let ctx;
@@ -115,7 +137,7 @@ document.body.onload = function () {
     failedCount++;
   }
 
-    chosenIndex = getRandomInt(images.length);
+  chosenIndex = getRandomInt(images.length);
   chosenIndex = 10;
   // console.log("chosenIndex", chosenIndex);
   if (chosenIndex < 50) {
