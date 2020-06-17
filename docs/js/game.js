@@ -208,7 +208,7 @@ document.body.onload = function () {
   }
 
   chosenIndex = getRandomInt(images.length);
-  chosenIndex = 10;
+  // chosenIndex = 10;
   if (chosenIndex < 50) {
     setBackgroundImages();
   }
