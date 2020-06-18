@@ -58,9 +58,6 @@
                         <a class="nav-link black-text" href="prizes.html">Prizes </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link black-text" href="leaderboard.html">Leaderboard</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link black-text" href="index.html">ABC Fun Club</a>
                     </li>
                 </ul>
@@ -87,7 +84,7 @@
                                     <div class="text-center">
                                         <a href="prizes.html">
                                             <img src="./raw/view-prizes.png" class=" img-fluid" alt="Responsive image">
-                                        
+
                                         </a>
                                     </div>
                                 </button>
@@ -223,14 +220,22 @@
     }
     function saveData() {
         console.log('save')
-        // const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
         document.getElementById("submitBtn").disabled = true;
         var formElement = document.querySelector("form").elements;
         name = formElement[0].value
         email = formElement[1].value
         sessionStorage.setItem('name', name)
         sessionStorage.setItem('email', email)
-        window.location.href = 'game.html'
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "https://fb-api.ematicsolutions.com/elixus/customers/scratch", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({ email }));
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                window.location.href = 'game.html'
+
+            }
+        };
 
     }
 </script>

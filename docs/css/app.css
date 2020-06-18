@@ -114,9 +114,6 @@ footer .nav-link {
   overflow: auto;
   margin-top: 100px;
 }
-#leaderboardContainer {
-  margin-top: 100px;
-}
 #prizeContainer {
   margin-top: 60px;
 }
@@ -196,16 +193,6 @@ footer .nav-link {
   text-align: center;
 }
 
-.leaderboard-score {
-  letter-spacing: 0px;
-  color: #ffffff;
-  text-shadow: 0px 0px 6px #0000004d;
-  list-style: none;
-  border-radius: 10px;
-  background-color: dodgerblue;
-  margin-bottom: 10px;
-}
-
 .hideImage {
   visibility: hidden;
 }
@@ -223,9 +210,6 @@ img .show {
   #game {
     margin-top: 0;
   }
-  #leaderboardContainer {
-    margin-top: 0;
-  }
   #prizeContainer {
     margin-top: 0;
   }
@@ -235,9 +219,6 @@ img .show {
 }
 @media (max-width: 760px) {
   #game {
-    margin-top: 0;
-  }
-  #leaderboardContainer {
     margin-top: 0;
   }
   #prizeContainer {
