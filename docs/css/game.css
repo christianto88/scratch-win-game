@@ -13,6 +13,9 @@
 #revealPrize {
   display: none;
 }
+#playAgain {
+  display: none;
+}
 /* .scratch-base {
   line-height: 60px;
   text-align: center;

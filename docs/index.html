@@ -219,7 +219,7 @@
         };
     }
     function saveData() {
-        console.log('save')
+        console.log('saving data')
         document.getElementById("submitBtn").disabled = true;
         var formElement = document.querySelector("form").elements;
         name = formElement[0].value
@@ -232,7 +232,20 @@
         xhttp.send(JSON.stringify({ email }));
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                window.location.href = 'game.html'
+                if (this.responseText === 'blocked') {
+                    alert('YOU HAVE REACH PLAYING LIMIT FOR TODAY. TRY AGAIN TOMORROW')
+                } else if (this.responseText === 'won') {
+                    alert('YOU HAVE WON THE PRIZE')
+                }
+                else {
+                    let response = JSON.parse(this.responseText)
+                    sessionStorage.setItem('chance', response.chance)
+                    sessionStorage.setItem('email', email)
+                    sessionStorage.setItem('name', name)
+                    sessionStorage.setItem('randomInt', response.randomInt)
+                    window.location.href = 'game.html'
+
+                }
 
             }
         };
